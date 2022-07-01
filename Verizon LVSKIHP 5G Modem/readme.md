@@ -8,15 +8,15 @@ https://tifan.net/blog/2021/04/01/enable-bridge-mode-on-verizon-5g-home-router-l
 - Shea Polansky
 
 # CVEs
-- [CVE-2022-28369](CVE-2022-28369.txt) - IDU 3.4.66.162 does not validate URI passed to enable_ssh functio, allowing arbitrary file upload/execution.
-- [CVE-2022-28370](CVE-2022-28370.txt) - ODU 3.33.101.0 does not validate firmware cryptographically when uploaded to the crtc_fw_upgrade function.
-- [CVE-2022-28371](CVE-2022-28371.txt) - IDU 3.4.66.162 & ODU 3.33.101.0 utilize static firmware-embedded certificate for authentication to JSON listeners.
-- [CVE-2022-28372](CVE-2022-28372.txt) - IDU 3.4.66.162 & ODU 3.33.101.0 do not validate the URI passed to JSON listener for firmware update.
-- [CVE-2022-28373](CVE-2022-28373.txt) - IDU 3.4.66.162 does not properly sanitize user-controlled parameters within the crtcreadpartition function. Shell metacharacters can be injected to achieve remote code execution as the root user.
-- [CVE-2022-28374](CVE-2022-28374.txt) - ODU 3.33.101.0 does not properly sanitize user-controlled parameters within the DMACC URLs on the Engineering page. Shell metacharacters can be injected to achieve remote code execution as the root user.
-- [CVE-2022-28375](CVE-2022-28375.txt) - ODU 3.33.101.0 does not properly sanitize user-controlled parameters within the crtcswitchsimprofile function. Shell metacharacters can be injected to achieve remote code execution as the root user.
-- [CVE-2022-28376](CVE-2022-28376.txt) - IDU 3.4.66.162 & ODU 3.33.101.0 pre-generate a static password for the "verizon" engineering account.
-- [CVE-2022-28377](CVE-2022-28377.txt) - IDU 3.4.66.162 & ODU 3.33.101.0 pre-generate a static password for the "jrpc" account.
+- [CVE-2022-28369](CVE-2022-28369.txt?raw=true) - IDU 3.4.66.162 does not validate URI passed to enable_ssh functio, allowing arbitrary file upload/execution.
+- [CVE-2022-28370](CVE-2022-28370.txt?raw=true) - ODU 3.33.101.0 does not validate firmware cryptographically when uploaded to the crtc_fw_upgrade function.
+- [CVE-2022-28371](CVE-2022-28371.txt?raw=true) - IDU 3.4.66.162 & ODU 3.33.101.0 utilize static firmware-embedded certificate for authentication to JSON listeners.
+- [CVE-2022-28372](CVE-2022-28372.txt?raw=true) - IDU 3.4.66.162 & ODU 3.33.101.0 do not validate the URI passed to JSON listener for firmware update.
+- [CVE-2022-28373](CVE-2022-28373.txt?raw=true) - IDU 3.4.66.162 does not properly sanitize user-controlled parameters within the crtcreadpartition function. Shell metacharacters can be injected to achieve remote code execution as the root user.
+- [CVE-2022-28374](CVE-2022-28374.txt?raw=true) - ODU 3.33.101.0 does not properly sanitize user-controlled parameters within the DMACC URLs on the Engineering page. Shell metacharacters can be injected to achieve remote code execution as the root user.
+- [CVE-2022-28375](CVE-2022-28375.txt?raw=true) - ODU 3.33.101.0 does not properly sanitize user-controlled parameters within the crtcswitchsimprofile function. Shell metacharacters can be injected to achieve remote code execution as the root user.
+- [CVE-2022-28376](CVE-2022-28376.txt?raw=true) - IDU 3.4.66.162 & ODU 3.33.101.0 pre-generate a static password for the "verizon" engineering account.
+- [CVE-2022-28377](CVE-2022-28377.txt?raw=true) - IDU 3.4.66.162 & ODU 3.33.101.0 pre-generate a static password for the "jrpc" account.
 
 # Walkthrough
 ## Rooting the OutDoor Unit (ODU)
