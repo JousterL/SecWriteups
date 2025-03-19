@@ -1,5 +1,7 @@
 # Introduction
-Friend of mine found one of these handheld Raman Spectrometers used, but was stymied by the login page. ![](images/1.jpg) I offered to take a look if they could get me a dump of the firmware, which they did.
+Friend of mine found one of these handheld Raman Spectrometers used, but was stymied by the login page. ![](images/1.jpg) 
+
+I offered to take a look if they could get me a dump of the firmware, which they did.
 
 # Walkthrough
 
