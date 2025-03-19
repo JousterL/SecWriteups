@@ -66,19 +66,20 @@ If you're feeling excitable, feel free to try your hand at the un-cracked hashes
 ```
 099d1a206ffe8359e0b619b58cc85de6:twister
 1d88bbca0d837b5c68531fcc541a7e6c:diosynth
-25935f5479af15cec4cf212ebe99709d
-33105d1e821681f60484eb8db98f8a28
+25935f5479af15cec4cf212ebe99709d:Diosynth25 %
+33105d1e821681f60484eb8db98f8a28:Diosynth16 %
 87cbb7a7e1cd5d73d50f2843d6c859a1:Redskins1!
 f8338a41412b3e5605e9a51cb42e1df3:diosynth1
 6dcd46831ba842febb438da59c7608ba:default
-c59adcba80edac9bf019ba7223a6209e
-d6a437a7e6ac001d143775442d08d9ac
-37efa39c2494587b16d10be553c9b711
+c59adcba80edac9bf019ba7223a6209e:19Alere99! %
+d6a437a7e6ac001d143775442d08d9ac 
+37efa39c2494587b16d10be553c9b711:Go1mojo8 %
 0795fa7d36e0dafc4964de4c58a7c4d1
-4e7a49c47fac0a7d318cb0fd3f2f04dd
+4e7a49c47fac0a7d318cb0fd3f2f04dd:ChemNerd2! %
 32f38a431986438aadb5c2dc4d1596e8:pw1
 034b0a3d79d8bc217226d8430bb34f10:pw2a
 fda29650dbbe2cf379eea8ab37b7e438:pw3
 a6b3ade7d2b1e5393484a8d99cbb1570:pw4a
 e165eb791befb1ba0dfc2594b3e9ae84:pw4
 ```
+Hashes with % next to the password were solved by Shea Polansky
