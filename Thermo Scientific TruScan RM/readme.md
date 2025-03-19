@@ -13,28 +13,47 @@ Now I could explore the firmware. Most of the files were binary, but I did find 
 
 I explored several functions, and suggested that if they had write access to the firmware, they might be able to patch the DLL to erase the auth check altogether, out of the CheckUserAuthentication function. ![](images/4.jpg)
 
-Another idea I tried was to test the original password for the account, because the password set when no users exist is in fact "default", but this didn't work. ![](images/5.jpg)
+Another idea I tried was to test the original password for the account, because the password set when no users exist is in fact "default", but this didn't work. 
 
-Figuring I was still looking in the right place, I continued exploring, and found the function referenced when generating passwords ![](images/6.jpg) AND found that it saves the last 6 password hashes for each user. ![](images/7.jpg) For those, like me, confused by the ToString("x2") that they're doing to each byte in the hash, this converts them to two-byte Hexadecimal (more on this later).
+![](images/5.jpg)
+
+Figuring I was still looking in the right place, I continued exploring, and found the function referenced when generating passwords 
+
+![](images/6.jpg) 
+
+AND found that it saves the last 6 password hashes for each user. 
+
+![](images/7.jpg) For those, like me, confused by the ToString("x2") that they're doing to each byte in the hash, this converts them to two-byte Hexadecimal (more on this later).
 
 I dug a little more into the name of the module, [Padarn](https://opennetcf.wordpress.com/padarn/), and found that it is a lightweight small-footprint ASP.NET web server, and considered that it may be worth hunting through the source to find vulnerabilities.
 
-However, at this point I started peeking at some of the binary files, and was pleasantly surprised. In the root of the firmware as a TruScanDB1.sdf. This is a SQL Server Compact Edition Database, and a quick peek inside showed what looked like username/md5 hash combinations. ![](images/8.jpg)
+However, at this point I started peeking at some of the binary files, and was pleasantly surprised. In the root of the firmware as a TruScanDB1.sdf. This is a SQL Server Compact Edition Database, and a quick peek inside showed what looked like username/md5 hash combinations. 
+
+![](images/8.jpg)
 
 Frustratingly, it's incredibly challenging to open a SQL Server CE DB written by a library that's a decade or more old. Most of the common tools out there (LINQPad, CompactView, SQLCEQuery, etc) failed in some form or another. I finally had success with a trial of [SDF Viewer](https://www.flyhoward.com/SDF_Viewer.aspx). This allowed me to easily copy the MD5 hashes of the passwords. ![](images/9.jpg)
 
-Remember that line for two-byte hexadecimal? This is where I would have tripped up, if not for a friend pointing out what was going on. I threw the hashes in a couple places, including Crack Station. Nothing. Didn't even recognize them as MD5 hashes. Thankfully, having wasted only about 5 minutes, said friend recognized and pointed out that Windows CE often utilizes UCS-2 encoding. This is also known as utf-16le. Manually testing this theory, we find that yes, the original password for the Administrator account was default. ![](images/10.jpg) ![](images/11.jpg) It does appear that they have change it since.
+Remember that line for two-byte hexadecimal? This is where I would have tripped up, if not for a friend pointing out what was going on. I threw the hashes in a couple places, including Crack Station. Nothing. Didn't even recognize them as MD5 hashes. Thankfully, having wasted only about 5 minutes, said friend recognized and pointed out that Windows CE often utilizes UCS-2 encoding. This is also known as utf-16le. Manually testing this theory, we find that yes, the original password for the Administrator account was default. ![](images/10.jpg) ![](images/11.jpg)
 
-Thankfully, at this point we can bring to bear everyone's favorite hash evaluation tool, Hashcat! Even better, looking through the modes of Hashcat shows that while Mode 0 is MD5 (and won't work for us), Mode 70 is labelled "md5(utf16le($pass))" which is exactly what we want! ![](images/12.jpg) I chose to throw RockYou against it with OneRuleToRuleThemAll, since it was MD5 and I was lucky enough to throw a 4090 at the problem. Within a few seconds, it spit back out:
+Thankfully, at this point we can bring to bear everyone's favorite hash evaluation tool, Hashcat! Even better, looking through the modes of Hashcat shows that while Mode 0 is MD5 (and won't work for us), Mode 70 is labelled "md5(utf16le($pass))" which is exactly what we want! ![](images/12.jpg) 
+
+I chose to throw RockYou against it with OneRuleToRuleThemAll, since it was MD5 and I was lucky enough to throw a 4090 at the problem. Within a few seconds, it spit back out:
 ```
 099d1a206ffe8359e0b619b58cc85de6:twister
 ```
 Which means we've now taken control of the Administrator account! While I waited for confirmation from my friend that they could log in with the password, I let my GPU continue to hammer away, and by the end of it we had an additional 9. ![](images/13.jpg)
+
 This got us all but two of the active accounts according to the database.
 
-We waited impatiently... ![](images/14.jpg)
+We waited impatiently... 
 
-My friend confirmed they were able to log in! ![](images/15.jpg) By this point it was 3 AM so I decided to call it.
+![](images/14.jpg)
+
+My friend confirmed they were able to log in! 
+
+![](images/15.jpg) 
+
+By this point it was 3 AM so I decided to call it.
 
 # Hash List
 
